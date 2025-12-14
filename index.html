@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday</title>
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: url('photo.jpg') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', Arial, sans-serif;
+  overflow: hidden;
+}
+
+.card {
+  position: absolute;
+  top: 100px;
+  right: 50px;
+  background: rgba(255,255,255,0.55);
+  padding: 45px;
+  border-radius: 30px;
+  text-align: center;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  z-index: 2;
+}
+
+h1 { font-size: 48px; color: #000; margin-bottom: 5px; }
+h2 { font-size: 30px; color: #000; margin-bottom: 20px; }
+p { color: #000; font-size: 18px; max-width: 380px; line-height: 1.6; }
+
+button {
+  margin-top: 30px;
+  padding: 14px 35px;
+  border: none;
+  border-radius: 35px;
+  font-size: 16px;
+  cursor: pointer;
+  background: #1E90FF;
+  color: #000;
+  transition: 0.3s;
+}
+
+button:hover { transform: scale(1.1); background: #6CB4EE; }
+
+.flower {
+  position: absolute;
+  top: -40px;
+  font-size: 32px;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- AUDIO ELEMENT HIDDEN -->
+<audio id="music" src="birthday.mp3" type="audio/mpeg" style="display:none"></audio>
+
+<div class="card">
+  <h1>Happy Birthday 🎉</h1>
+  <h2>Ahmad Firdaus 🤍</h2>
+  <p>You are someone special — calm like the sea, comforting like the sky at night.
+     May this new year of your life be filled with peace, love, and beautiful moments. I LOVE YOU my anugerah terindah 💙✨</p>
+  <button id="surpriseBtn">Click for surprise 🌸❤️</button>
+</div>
+
+<script>
+document.getElementById("surpriseBtn").addEventListener("click", function() {
+    const music = document.getElementById("music");
+    music.play(); // main lagu bila button ditekan
+
+    // Function untuk create satu bunga/hati
+    function createFlower() {
+        let flower = document.createElement("div");
+        flower.className = "flower";
+        flower.innerHTML = Math.random() > 0.5 ? "🌸" : "❤️";
+        flower.style.left = Math.random() * 100 + "vw";
+        flower.style.animationDuration = (Math.random() * 3 + 4) + "s";
+        document.body.appendChild(flower);
+        setTimeout(() => flower.remove(), 8000); // remove selepas animasi habis
+    }
+
+    // Loop terus buat bunga/hati jatuh setiap 300ms
+    setInterval(createFlower, 300);
+});
+</script>
+
+</body>
+</html>
